@@ -50,4 +50,4 @@ Desarrollado por el semillero de fenomenos de transporte EIA-FTA.
 
 ## Licencia
 
-Este proyecto se distribuye bajo la licencia MIT.z
+Este proyecto se distribuye bajo la licencia MIT.
