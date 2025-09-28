@@ -1,6 +1,6 @@
 # Simulación de Flujo en Tubos con RBF
 
-Este proyecto implementa un solucionador numérico para problemas de flujo en tubos usando funciones de base radial (RBF) en Julia. El código permite simular perfiles de velocidad, presión y temperatura en geometrías arbitrarias, utilizando métodos de frontera y puntos interiores generados aleatoriamente o siguiendo la geometria del problema.
+Este proyecto implementa un solucionador numérico para problemas de flujo en tubos usando funciones de base radial (RBF) en Julia. El código permite simular perfiles de velocidad, presión y temperatura para un fluido incompresible en geometrías arbitrarias, utilizando métodos de frontera y puntos interiores generados aleatoriamente o siguiendo la geometria del problema.
 
 ## Estructura del proyecto
 
