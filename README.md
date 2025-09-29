@@ -50,6 +50,10 @@ La siguiente figura muestra un perfil de velocidad simulado en un tubo usando el
 
 ![Perfil de velocidad en un tubo](Graficos/tuboancho.png)
 
+La siguiente figura muestra un perfil de velocidad simulado en un tubo usando el solver implementado con velocidad, presion y temperatura desconocida:
+
+![Perfil de velocidad en un tubo](Graficos/ejemplotemp.png)
+
 ## Créditos
 
 Desarrollado por el semillero de fenomenos de transporte EIA-FTA.
