@@ -25,7 +25,7 @@ function generar_fronteras_rng(prob)
             ancho = S(x) - I(x)
             if u < ancho
                 y = I(x) + ancho * rand()
-                if minimum(norm.(vcat(interior, frontera_superior, frontera_inferior) .- [[x,y]])) > 0.1
+                if minimum(norm.(vcat(interior, frontera_superior, frontera_inferior) .- [[x,y]])) > 0.15
                     interior = vcat([[x,y]], interior) 
                     break
                 end

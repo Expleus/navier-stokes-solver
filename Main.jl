@@ -24,17 +24,17 @@ Tinf = 0 # Temperatura en la frontera inferior (°C)
 
 Lx = 5 # Longitud del tubo (m)
 Ly = 1 # Altura de referencia vertical (m)
-S(x) = 1 # Función que define la frontera superior del tubo en x
-I(x) = 0 # Función que define la frontera inferior del tubo en x
+S(x) = log(0.05*(x+2))+4  # Función que define la frontera superior del tubo en x
+I(x) = (sin(x))^2 # Función que define la frontera inferior del tubo en x
 
 
 # =====================
 # Parámetros de la simulación numérica
-# =====================
+# ====================
 
 puntos_frontera_x = 20 # Número de puntos en la frontera horizontal (entrada/salida)
 puntos_frontera_y = 7  # Número de puntos en la frontera vertical (superior/inferior)
-puntos_interior = 130  # Número de puntos interiores para el dominio
+puntos_interior = 140  # Número de puntos interiores para el dominio
 puntos = 1 # Tipo de generación de puntos: 1=rng (aleatorio), 2=flux (basado en la geometria)
 
 
