@@ -1,55 +1,65 @@
-include("Backend/Backend.jl")
+# =====================
+# Inclusión de módulos principales
+# =====================
 
-#Parametros fisicos
+include("Backend/Backend.jl") # Importa toda la funcionalidad del backend
 
-μ = 1 #Viscosidad (Pa)
-ρ = 1 #Densidad (Kg/m^3)
-k = 1
-Cp = 1
-Pin = 1 #Presion a la entrada (Pa)
-Tsup = 0
-Tinf = 0
 
-#Parametros geometricos
+# =====================
+# Parámetros físicos del problema
+# =====================
 
-Lx = 5 #Longitud del tubo (m)
-Ly = 1 #Longitud de referencia vertical (m)
-S(x) = 1 #Parte superior del tubo
-I(x) = 0 #Parte inferior del tubo
+μ = 1   # Viscosidad dinámica del fluido (Pa·s)
+ρ = 1   # Densidad del fluido (kg/m^3)
+k = 1   # Conductividad térmica (W/m·K)
+Cp = 1  # Calor específico a presión constante (J/kg·K)
+Pin = 1 # Presión en la entrada del tubo (Pa)
+Tsup = 0 # Temperatura en la frontera superior (°C)
+Tinf = 0 # Temperatura en la frontera inferior (°C)
 
-#Parametros de la simulacion
 
-puntos_frontera_x = 20
-puntos_frontera_y = 7
-puntos_interior = 130
-puntos = 1 # Opciones: rng (1), flux (2)
+# =====================
+# Parámetros geométricos del dominio
+# =====================
 
-#Definicion del problema
+Lx = 5 # Longitud del tubo (m)
+Ly = 1 # Altura de referencia vertical (m)
+S(x) = 1 # Función que define la frontera superior del tubo en x
+I(x) = 0 # Función que define la frontera inferior del tubo en x
 
-prob= problema(μ, ρ, k, Cp, Pin, 
-               Lx, Ly, Tsup, Tinf, S, I, 
-               puntos_frontera_x, puntos_frontera_y, puntos_interior)
 
-#Generar los puntos de entrenamiento
+# =====================
+# Parámetros de la simulación numérica
+# =====================
 
-#Segunda entrada problema: velocidad y presion desconocida (1), 
+puntos_frontera_x = 20 # Número de puntos en la frontera horizontal (entrada/salida)
+puntos_frontera_y = 7  # Número de puntos en la frontera vertical (superior/inferior)
+puntos_interior = 130  # Número de puntos interiores para el dominio
+puntos = 1 # Tipo de generación de puntos: 1=rng (aleatorio), 2=flux (basado en la geometria)
 
-w,evaluacion,fig = problema(prob, 2, puntos) 
-            
-fig
 
-adjkzhdj(y) = ((Pin/Lx)^2/192)*(Ly^4-(Ly-2*y)^4)
+# =====================
+# Definición de la estructura del problema físico
+# =====================
 
-Plots.plot(RBF_eval.(Ref(2),LinRange(0,1,100),Ref(w.t)), LinRange(0,1,100))
-Plots.plot!(adjkzhdj.(LinRange(0,1,100)), LinRange(0,1,100))
+prob = problema(
+    μ, ρ, k, Cp, Pin, 
+    Lx, Ly, Tsup, Tinf, S, I, 
+    puntos_frontera_x, puntos_frontera_y, puntos_interior
+)
 
-y = LinRange(0,1,100)
 
-num  = RBF_eval.(Ref(5), y, Ref(w.t))
-anal = adjkzhdj.(y)
+# =====================
+# Ejecución de la simulación principal
+# =====================
 
-err_pct = (norm(num - anal) / norm(anal)) * 100
 
-fig = grafica_vpt_dimensional(prob, w, 0, 1)
+# Segunda y tercera entrada del problema:
+#   - x=1: velocidad y presión desconocidas
+#   - x=2: velocidad, presión y temperatura desconocidas
+#   - puntos: tipo de generación de puntos
 
+w, evaluacion, fig = problema(prob, 2, puntos)
+
+# Muestra la figura generada por la simulación
 fig

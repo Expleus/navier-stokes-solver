@@ -44,6 +44,12 @@ Puedes modificar los parámetros físicos, geométricos y de simulación en `Mai
 
 El proyecto genera gráficos de perfiles de velocidad, presión y temperatura, guardados como archivos PNG en el directorio principal.
 
+## Ejemplo de simulación
+
+La siguiente figura muestra un perfil de velocidad simulado en un tubo usando el solver implementado con velocidad y presion desconocida:
+
+![Perfil de velocidad en un tubo](Graficos/tuboancho.png)
+
 ## Créditos
 
 Desarrollado por el semillero de fenomenos de transporte EIA-FTA.
