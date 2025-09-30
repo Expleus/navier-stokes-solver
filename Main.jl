@@ -17,16 +17,14 @@ Pin = 1 # Presión en la entrada del tubo (Pa)
 Tsup = 0 # Temperatura en la frontera superior (°C)
 Tinf = 0 # Temperatura en la frontera inferior (°C)
 
-
 # =====================
 # Parámetros geométricos del dominio
 # =====================
 
 Lx = 5 # Longitud del tubo (m)
 Ly = 1 # Altura de referencia vertical (m)
-S(x) = log(0.05*(x+2))+4  # Función que define la frontera superior del tubo en x
-I(x) = (sin(x))^2 # Función que define la frontera inferior del tubo en x
-
+S(x) = 1 #log(0.05*(x+2))+4  # Función que define la frontera superior del tubo en x
+I(x) = 0 # Función que define la frontera inferior del tubo en x
 
 # =====================
 # Parámetros de la simulación numérica
@@ -36,7 +34,6 @@ puntos_frontera_x = 20 # Número de puntos en la frontera horizontal (entrada/sa
 puntos_frontera_y = 7  # Número de puntos en la frontera vertical (superior/inferior)
 puntos_interior = 140  # Número de puntos interiores para el dominio
 puntos = 1 # Tipo de generación de puntos: 1=rng (aleatorio), 2=flux (basado en la geometria)
-
 
 # =====================
 # Definición de la estructura del problema físico
@@ -48,11 +45,9 @@ prob = problema(
     puntos_frontera_x, puntos_frontera_y, puntos_interior
 )
 
-
 # =====================
 # Ejecución de la simulación principal
 # =====================
-
 
 # Segunda y tercera entrada del problema:
 #   - x=1: velocidad y presión desconocidas
@@ -62,4 +57,7 @@ prob = problema(
 w, evaluacion, fig = problema(prob, 2, puntos)
 
 # Muestra la figura generada por la simulación
+
 fig
+
+save("resultado.png", fig) 

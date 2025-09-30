@@ -316,4 +316,3 @@ function matriz_dimensional_vpt(prob, centro, ϕ, Φ, ψ)
     return A, b, evaluacion
 
 end
-

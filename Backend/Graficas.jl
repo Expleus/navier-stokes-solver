@@ -56,10 +56,11 @@ function grafica_vp_dimensional(prob, w, min, max)
         colormap = :imola
     )
 
-    Colorbar(fig[1, 2],
-        colormap = :imola,
-        label = "Magnitud (m/s)",
-        limits = (minimum(mag_global), maximum(mag_global)),
+    CairoMakie.arrows!(ax1, all_x, all_y, all_u, all_v;
+        lengthscale = 1,
+        arrowsize = 10,
+        color = mag_global,
+        colormap = :imola
     )
 
     # ============================================================
@@ -95,9 +96,6 @@ function grafica_vp_dimensional(prob, w, min, max)
     # ============================================================
     # Guardar figura combinada
     # ============================================================
-    save("C:\\Users\\exple\\OneDrive\\Desktop\\Compartir\\figuras_combinadas.png", fig)
-    save("Graficos/Perfil_de_velocidades_combinado.png", fig)
-
     return fig
 
 end
@@ -143,7 +141,12 @@ function grafica_vpt_dimensional(prob, w, min, max)
       append!(all_v, v)
    end
    mag_global = sqrt.(all_u.^2 .+ all_v.^2) ./ escala
-   arrows2d!(ax1, all_x, all_y, all_u, all_v; lengthscale = 1, tipwidth = 10, color = mag_global, colormap = :imola)
+   CairoMakie.arrows!(ax1, all_x, all_y, all_u, all_v;
+        lengthscale = 1,
+        arrowsize = 10,
+        color = mag_global,
+        colormap = :imola
+    )
    cb1 = Colorbar(grid[1:2, 2], colormap = :imola, label = "Magnitud (m/s)", limits = (minimum(mag_global), maximum(mag_global)))
 
    # =====================
@@ -182,8 +185,6 @@ function grafica_vpt_dimensional(prob, w, min, max)
    # =====================
    # Guardar figura combinada
    # =====================
-   save(raw"C:\Users\exple\OneDrive\Desktop\Compartir\figuras_combinadas.png", fig)
-   save("Graficos/Perfil_de_velocidades_combinado.png", fig)
 
    return fig
 end
