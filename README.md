@@ -27,7 +27,7 @@ Pkg.add(["Random", "Plots", "Distributions", "NonlinearSolve", "SparseArrays", "
 4. Instala el paquete RadialBasisFunctions.jl desde GitHub:
 
 ```julia
-Pkg.add(url="https://github.com/Expleus/RadialBasisFunctions.jl")
+Pkg.add(url="https://github.com/Expleus/RadialBasisFunctions.jl.git")
 ```
 
 ## Uso
